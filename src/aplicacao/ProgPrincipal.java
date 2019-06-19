@@ -36,18 +36,15 @@ public class ProgPrincipal {
 			System.out.print("Entre com  Data de saída (dd/MM/yyyy): ");
 			dataSaida = sdf.parse(sc.next());
 			
-			Date agora = new Date();
+			String erro = reserva.updateDatas(dataEntrada, dataSaida);
 			
-			if (dataEntrada.before(agora) || dataSaida.before(agora)) {
-				System.out.println("ERRO NA RESERVA: As datas de reserva para atualização devem ser datas futuras!!!");
-			}
-			else if (!dataSaida.after(dataEntrada)) {
-				System.out.println("ERRO NA RESERVA: A data de saida tem que ser posterior a data de entrada!!!");
+			if (erro != null) {
+				System.out.println("ERRO NA RESERVA: " + erro);
 			}
 			else {
-				reserva.updateDatas(dataEntrada, dataSaida);
 				System.out.println("Reserva: " + reserva);
 			}
+			
 		}
 		
 		sc.close();
